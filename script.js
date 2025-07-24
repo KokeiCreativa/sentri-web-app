@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const userInput = document.getElementById("userInput");
   const sendBtn = document.getElementById("sendBtn");
 
-  // Kata-kata sensitif untuk peringatan
   const blacklist = ["judi", "togel", "slot", "penipuan", "scam", "hack"];
 
   function appendMessage(sender, message) {
@@ -25,15 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
     appendMessage("user", userText);
     userInput.value = "";
 
-    // Deteksi kata berbahaya
     if (containsBlacklistedWord(userText)) {
-      appendMessage("bot", "⚠️ Kami mendeteksi kata yang tidak diperbolehkan. Harap hindari penggunaan kata seperti itu.");
+      appendMessage("bot", "⚠️ Kata tersebut termasuk dalam daftar yang dilarang. Harap gunakan bahasa yang sopan.");
       return;
     }
 
-    // Simulasi respons AI
     setTimeout(() => {
-      appendMessage("bot", "Terima kasih! Pesan Anda telah diterima.");
+      appendMessage("bot", "Pesan diterima. Ada yang bisa saya bantu lagi?");
     }, 800);
   });
 
