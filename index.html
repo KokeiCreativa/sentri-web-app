@@ -1,40 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SENTRI – Chatbot AI Keuangan</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>SENTRI</h1>
         <p>Chatbot AI Edukasi Keuangan</p>
     </header>
-
     <main>
         <div class="chat-container">
-            <div class="chat-box" id="chat-box"></div>
-            <div class="input-area">
-                <input type="text" id="user-input" placeholder="Ketik pesan di sini..." />
-                <button onclick="sendMessage()">Kirim</button>
-            </div>
-            <p id="alert" class="alert"></p>
+            <div id="chat-box"></div>
+            <input type="text" id="user-input" placeholder="Ketik pesan di sini..." />
+            <button onclick="sendMessage()">Kirim</button>
         </div>
-
-        <div class="extra">
-            <a href="https://wa.me/6281234567890" target="_blank" class="wa-link">Hubungi via WhatsApp</a>
-            <div class="video-container">
-                <p><strong>Demo Video:</strong></p>
-                <video controls width="100%">
-                    <source src="demo.mp4" type="video/mp4" />
-                    Browser Anda tidak mendukung video.
-                </video>
-            </div>
+        <div class="info-links">
+            <a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a> |
+            <a href="https://t.me/username_bot" target="_blank">Telegram</a>
         </div>
     </main>
-
     <script src="script.js"></script>
 </body>
 </html>

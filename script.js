@@ -1,25 +1,21 @@
-
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const alertBox = document.getElementById("alert");
-
 function sendMessage() {
-    const text = userInput.value.trim();
-    if (text === "") return;
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (!message) return;
+    
+    const chatBox = document.getElementById("chat-box");
+    const userMsg = document.createElement("div");
+    userMsg.textContent = "Kamu: " + message;
+    chatBox.appendChild(userMsg);
 
-    const msg = document.createElement("div");
-    msg.textContent = "Anda: " + text;
-    chatBox.appendChild(msg);
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    // Deteksi kata kunci negatif
-    const forbidden = ["judi", "togel", "slot", "penipuan"];
-    const found = forbidden.find(kata => text.toLowerCase().includes(kata));
-    if (found) {
-        alertBox.textContent = "⚠️ Peringatan: Kata "" + found + "" terdeteksi! Harap gunakan chatbot secara bijak.";
+    const botMsg = document.createElement("div");
+    if (/(slot|togel|penipuan|judi)/i.test(message)) {
+        botMsg.textContent = "⚠️ Peringatan: Aktivitas yang Anda sebutkan termasuk tindakan mencurigakan. Harap berhati-hati.";
     } else {
-        alertBox.textContent = "";
+        botMsg.textContent = "SENTRI: Terima kasih! Pertanyaan Anda sedang diproses...";
     }
+    chatBox.appendChild(botMsg);
 
-    userInput.value = "";
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
