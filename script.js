@@ -1,70 +1,39 @@
+// script.js
+const chatArea = document.getElementById("chat-area");
+const userInput = document.getElementById("user-input");
+const sendButton = document.getElementById("send-button");
 
-const kataSensitif = ["togel", "slot", "penipuan", "judi", "scam", "nipu"];
-
-function cekKataSensitif(userInput) {
-  const lowerInput = userInput.toLowerCase();
-  for (let kata of kataSensitif) {
-    if (lowerInput.includes(kata)) {
-      return `⚠️ Peringatan: Kata "${kata}" terdeteksi. Hindari aktivitas ilegal. Jika ini laporan, silakan hubungi kami via WhatsApp.`;
-    }
+sendButton.addEventListener("click", () => {
+  const userText = userInput.value.trim();
+  if (userText !== "") {
+    appendMessage("Anda", userText);
+    generateResponse(userText);
+    userInput.value = "";
   }
-  return null;
+});
+
+function appendMessage(sender, message) {
+  const messageElement = document.createElement("div");
+  messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+  chatArea.appendChild(messageElement);
+  chatArea.scrollTop = chatArea.scrollHeight;
 }
 
-function getBotResponse(input) {
-  const peringatan = cekKataSensitif(input);
-  if (peringatan) {
-    return peringatan;
+function generateResponse(userText) {
+  let response = "";
+
+  // Deteksi pesan mengandung kata berisiko
+  const lowerText = userText.toLowerCase();
+
+  if (lowerText.includes("slot") || lowerText.includes("togel")) {
+    response = "🚨 Perhatian: Hindari aktivitas judi online. Ini bisa membahayakan kondisi finansial Anda.";
+  } else if (lowerText.includes("pinjam uang") || lowerText.includes("pinjol")) {
+    response = "💡 Hati-hati dengan pinjaman online ilegal! Cek legalitasnya di: https://cekfintech.id";
+  } else if (lowerText.includes("investasi") && lowerText.includes("cepat")) {
+    response = "📛 Waspada penipuan! Tidak ada investasi yang cepat dan pasti untung. Pastikan legalitasnya di OJK.";
+  } else {
+    response = "💡 Periksa kembali link sebelum klik. Pastikan sumber terpercaya ya!";
   }
 
-  if (input.toLowerCase().includes("halo")) {
-    return "Hai! Ada yang bisa saya bantu terkait keuangan atau keamanan digital?";
-  }
-
-  return "Maaf, saya belum memahami maksud Anda. Coba dengan kata lain.";
+  appendMessage("SENTRI", response);
 }
-
-function sendMessage() {
-  const userInput = document.getElementById("userInput").value;
-  if (userInput.trim() === "") return;
-
-  const chatLog = document.getElementById("chatLog");
-
-  const userDiv = document.createElement("div");
-  userDiv.className = "userText";
-  userDiv.innerHTML = `<strong>Anda:</strong> ${userInput}`;
-  chatLog.appendChild(userDiv);
-
-  const botResponse = getBotResponse(userInput);
-  const botDiv = document.createElement("div");
-  botDiv.className = "botText";
-  botDiv.innerHTML = `<strong>SENTRI:</strong> ${botResponse} <button onclick="copyBotText()">📋</button>`;
-  chatLog.appendChild(botDiv);
-
-  document.getElementById("userInput").value = "";
-  chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-function copyBotText() {
-  const messages = document.getElementsByClassName("botText");
-  if (messages.length > 0) {
-    const lastMessage = messages[messages.length - 1].innerText;
-    navigator.clipboard.writeText(lastMessage);
-    alert("Jawaban disalin ke clipboard!");
-  }
-}
-
-window.onload = function() {
-  const tips = [
-    "💡 Jangan bagikan OTP Anda kepada siapa pun.",
-    "💡 Hanya gunakan aplikasi resmi untuk transaksi keuangan.",
-    "💡 Waspada terhadap penipuan berkedok hadiah.",
-    "💡 Periksa kembali link sebelum klik."
-  ];
-  const acak = tips[Math.floor(Math.random() * tips.length)];
-  const chatLog = document.getElementById("chatLog");
-  const tipDiv = document.createElement("div");
-  tipDiv.className = "botText";
-  tipDiv.innerHTML = `<strong>SENTRI:</strong> ${acak}`;
-  chatLog.appendChild(tipDiv);
-};
