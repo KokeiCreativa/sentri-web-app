@@ -1,4 +1,3 @@
-// script.js
 const chatArea = document.getElementById("chat-area");
 const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-button");
@@ -20,20 +19,17 @@ function appendMessage(sender, message) {
 }
 
 function generateResponse(userText) {
-  let response = "";
-
-  // Deteksi pesan mengandung kata berisiko
   const lowerText = userText.toLowerCase();
 
   if (lowerText.includes("slot") || lowerText.includes("togel")) {
-    response = "🚨 Perhatian: Hindari aktivitas judi online. Ini bisa membahayakan kondisi finansial Anda.";
+    appendMessage("SENTRI", "🚨 Perhatian: Hindari aktivitas judi online. Ini bisa membahayakan kondisi finansial Anda.");
   } else if (lowerText.includes("pinjam uang") || lowerText.includes("pinjol")) {
-    response = "💡 Hati-hati dengan pinjaman online ilegal! Cek legalitasnya di: https://cekfintech.id";
+    appendMessage("SENTRI", "💡 Hati-hati dengan pinjaman online ilegal! Cek legalitasnya di: https://cekfintech.id");
   } else if (lowerText.includes("investasi") && lowerText.includes("cepat")) {
-    response = "📛 Waspada penipuan! Tidak ada investasi yang cepat dan pasti untung. Pastikan legalitasnya di OJK.";
+    appendMessage("SENTRI", "📛 Waspada penipuan! Tidak ada investasi yang cepat dan pasti untung. Pastikan legalitasnya di OJK.");
+  } else if (lowerText.includes("hadiah") && lowerText.includes("link")) {
+    appendMessage("SENTRI", "⚠️ Jangan sembarangan klik link hadiah! Banyak penipuan berkedok undian.");
   } else {
-    response = "💡 Periksa kembali link sebelum klik. Pastikan sumber terpercaya ya!";
+    appendMessage("SENTRI", "💡 Periksa kembali link sebelum klik. Pastikan sumber terpercaya ya!");
   }
-
-  appendMessage("SENTRI", response);
 }
