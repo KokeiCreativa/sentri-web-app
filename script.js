@@ -1,40 +1,40 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const chatbox = document.querySelector(".chatbox");
-  const userInput = document.getElementById("userInput");
-  const sendBtn = document.getElementById("sendBtn");
+const chatBox = document.getElementById("chat-box");
+const userInput = document.getElementById("user-input");
 
-  const blacklist = ["judi", "togel", "slot", "penipuan", "scam", "hack"];
+// Kata kunci berbahaya yang akan memicu peringatan otomatis
+const keywordList = ["slot", "togel", "pinjaman ilegal", "judi", "chip", "qq", "duit cepat", "tusuk", "bocoran", "deposit"];
 
-  function appendMessage(sender, message) {
-    const messageElement = document.createElement("div");
-    messageElement.classList.add("message", sender);
-    messageElement.textContent = message;
-    chatbox.appendChild(messageElement);
-    chatbox.scrollTop = chatbox.scrollHeight;
+// Balasan bot default
+function getBotResponse(input) {
+  input = input.toLowerCase();
+
+  if (keywordList.some(keyword => input.includes(keyword))) {
+    return "⚠️ Peringatan: Aktivitas tersebut berisiko penipuan atau termasuk judi online. Harap hindari demi keamanan keuangan Anda. Jika perlu bantuan, hubungi kami via WhatsApp.";
   }
 
-  function containsBlacklistedWord(text) {
-    return blacklist.some(word => text.toLowerCase().includes(word));
-  }
+  if (input.includes("halo") || input.includes("hai")) return "Halo! Saya SENTRI, asisten keuangan digital Anda. Ada yang bisa saya bantu?";
+  if (input.includes("investasi")) return "Investasi adalah cara menumbuhkan uang. Pastikan pilih yang legal, terdaftar OJK.";
+  if (input.includes("pinjaman")) return "Selalu pastikan pinjaman berasal dari lembaga resmi, bukan pinjol ilegal.";
+  if (input.includes("wa") || input.includes("whatsapp")) return "Hubungi kami langsung via WhatsApp di: https://wa.me/6281234567890";
 
-  sendBtn.addEventListener("click", function () {
-    const userText = userInput.value.trim();
-    if (userText === "") return;
+  return "Maaf, saya belum mengerti maksud Anda. Bisa dijelaskan lagi?";
+}
 
-    appendMessage("user", userText);
-    userInput.value = "";
+function appendMessage(sender, message) {
+  const msg = document.createElement("div");
+  msg.classList.add("message", sender);
+  msg.innerText = message;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
 
-    if (containsBlacklistedWord(userText)) {
-      appendMessage("bot", "⚠️ Kata tersebut termasuk dalam daftar yang dilarang. Harap gunakan bahasa yang sopan.");
-      return;
-    }
+function sendMessage() {
+  const input = userInput.value.trim();
+  if (input === "") return;
 
-    setTimeout(() => {
-      appendMessage("bot", "Pesan diterima. Ada yang bisa saya bantu lagi?");
-    }, 800);
-  });
+  appendMessage("user", input);
+  const response = getBotResponse(input);
+  setTimeout(() => appendMessage("bot", response), 500);
 
-  userInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") sendBtn.click();
-  });
-});
+  userInput.value = "";
+}
