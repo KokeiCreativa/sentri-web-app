@@ -1,39 +1,15 @@
-const chatBox = document.getElementById("chat-box");
-const userInput = document.getElementById("user-input");
-const sendButton = document.getElementById("send-button");
+function kirim() {
+  const input = document.getElementById("userInput").value.toLowerCase();
+  const responseBox = document.getElementById("response");
 
-const kataTerlarang = [
-  "slot", "togel", "penipuan", "scam", "fraud", "judi", "dukun", "chip", "hack",
-];
+  const kataTerlarang = ["slot", "togel", "penipuan", "uang cepat", "uang online", "judi", "scam", "cuan instan"];
+  const terdeteksi = kataTerlarang.find(kata => input.includes(kata));
 
-function tampilkanPesan(pengirim, pesan) {
-  const pesanElem = document.createElement("div");
-  pesanElem.classList.add("pesan", pengirim);
-  pesanElem.innerText = pesan;
-  chatBox.appendChild(pesanElem);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function cekKataTerlarang(teks) {
-  const teksLower = teks.toLowerCase();
-  return kataTerlarang.some(kata => teksLower.includes(kata));
-}
-
-sendButton.addEventListener("click", () => {
-  const pesan = userInput.value.trim();
-  if (pesan === "") return;
-
-  tampilkanPesan("user", pesan);
-
-  if (cekKataTerlarang(pesan)) {
-    setTimeout(() => {
-      tampilkanPesan("bot", "⚠️ Kami mendeteksi kata yang tidak diperbolehkan. Harap hindari konten terkait penipuan atau judi.");
-    }, 500);
+  if (!input.trim()) {
+    responseBox.innerHTML = "Silakan isi pesan terlebih dahulu.";
+  } else if (terdeteksi) {
+    responseBox.innerHTML = `⚠️ Peringatan: Terdeteksi kata mencurigakan (“${terdeteksi}”). Harap berhati-hati dan hindari penipuan atau praktik ilegal.`;
   } else {
-    setTimeout(() => {
-      tampilkanPesan("bot", "Terima kasih. Pesan Anda telah kami terima.");
-    }, 500);
+    responseBox.innerHTML = `✅ Terima kasih atas pertanyaannya. Data sedang diproses...`;
   }
-
-  userInput.value = "";
-});
+}
