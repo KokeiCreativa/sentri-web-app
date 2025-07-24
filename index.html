@@ -1,31 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENTRI – Chatbot AI Edukasi Keuangan</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SENTRI – Chatbot AI Keuangan</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>SENTRI</h1>
-    <p>Chatbot AI Edukasi Keuangan – BI–OJK Hackathon 2025</p>
-  </header>
+    <header>
+        <h1>SENTRI</h1>
+        <p>Chatbot AI Edukasi Keuangan</p>
+    </header>
 
-  <main>
-    <section class="chat-container">
-      <div id="chat-box" class="chat-box"></div>
-      <div class="input-area">
-        <input type="text" id="user-input" placeholder="Tulis pertanyaan kamu..." />
-        <button id="send-button">Kirim</button>
-      </div>
-    </section>
-  </main>
+    <main>
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box"></div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Ketik pesan di sini..." />
+                <button onclick="sendMessage()">Kirim</button>
+            </div>
+            <p id="alert" class="alert"></p>
+        </div>
 
-  <footer>
-    <p>Dikembangkan oleh KokeiCreativa – 2025</p>
-  </footer>
+        <div class="extra">
+            <a href="https://wa.me/6281234567890" target="_blank" class="wa-link">Hubungi via WhatsApp</a>
+            <div class="video-container">
+                <p><strong>Demo Video:</strong></p>
+                <video controls width="100%">
+                    <source src="demo.mp4" type="video/mp4" />
+                    Browser Anda tidak mendukung video.
+                </video>
+            </div>
+        </div>
+    </main>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
