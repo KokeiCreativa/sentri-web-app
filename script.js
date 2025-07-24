@@ -1,58 +1,43 @@
-function getBotResponse(input) {
-    input = input.toLowerCase();
+document.addEventListener("DOMContentLoaded", function () {
+  const chatbox = document.querySelector(".chatbox");
+  const userInput = document.getElementById("userInput");
+  const sendBtn = document.getElementById("sendBtn");
 
-    if (input.includes("halo") || input.includes("hai")) {
-        return "Halo! Ada yang bisa saya bantu terkait keuangan digital?";
-    } else if (input.includes("apa itu sentri")) {
-        return "SENTRI adalah asisten digital untuk membantu masyarakat memahami dan menjaga keamanan keuangan digital.";
-    } else if (input.includes("terima kasih") || input.includes("makasih")) {
-        return "Sama-sama! Jangan ragu untuk bertanya lagi ya.";
+  // Kata-kata sensitif untuk peringatan
+  const blacklist = ["judi", "togel", "slot", "penipuan", "scam", "hack"];
+
+  function appendMessage(sender, message) {
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message", sender);
+    messageElement.textContent = message;
+    chatbox.appendChild(messageElement);
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+
+  function containsBlacklistedWord(text) {
+    return blacklist.some(word => text.toLowerCase().includes(word));
+  }
+
+  sendBtn.addEventListener("click", function () {
+    const userText = userInput.value.trim();
+    if (userText === "") return;
+
+    appendMessage("user", userText);
+    userInput.value = "";
+
+    // Deteksi kata berbahaya
+    if (containsBlacklistedWord(userText)) {
+      appendMessage("bot", "⚠️ Kami mendeteksi kata yang tidak diperbolehkan. Harap hindari penggunaan kata seperti itu.");
+      return;
     }
 
-    return "Maaf, saya belum memahami pertanyaan itu. Bisa coba ketik dengan kata yang berbeda?";
-}
+    // Simulasi respons AI
+    setTimeout(() => {
+      appendMessage("bot", "Terima kasih! Pesan Anda telah diterima.");
+    }, 800);
+  });
 
-const kataSensitif = [
-    "uang online", "slot", "togel", "judi", "penipuan", "pinjaman bodong",
-    "kredit online ilegal", "scam", "phising", "investasi bodong"
-];
-
-function deteksiKataSensitif(input) {
-    for (let kata of kataSensitif) {
-        if (input.toLowerCase().includes(kata)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function tanggapanDeteksiKata() {
-    return `
-⚠️ Peringatan: Kami mendeteksi kata yang berisiko seperti judi, penipuan, atau investasi bodong.<br><br>
-📢 Hindari aktivitas ilegal. Jika Anda butuh bantuan:<br>
-✅ WhatsApp OJK: <a href="https://wa.me/628115715715" target="_blank">Klik di sini</a><br>
-✅ Kontak OJK 157 atau BI 1500-655.
-`;
-}
-
-function getFinalBotResponse(input) {
-    if (deteksiKataSensitif(input)) {
-        return tanggapanDeteksiKata();
-    } else {
-        return getBotResponse(input);
-    }
-}
-
-function sendMessage() {
-    let userInput = document.getElementById("user-input").value;
-    if (userInput.trim() === "") return;
-
-    let chatContainer = document.getElementById("chat-container");
-    chatContainer.innerHTML += `<div class="chat user">${userInput}</div>`;
-
-    let botResponse = getFinalBotResponse(userInput);
-    chatContainer.innerHTML += `<div class="chat bot">${botResponse}</div>`;
-
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-    document.getElementById("user-input").value = "";
-}
+  userInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") sendBtn.click();
+  });
+});
