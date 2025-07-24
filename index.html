@@ -2,95 +2,53 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENTRI Chatbot</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f1f1f1;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        #chatbox {
-            height: 300px;
-            overflow-y: scroll;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: #fdfdfd;
-        }
-        .message {
-            margin-bottom: 10px;
-        }
-        .user {
-            text-align: right;
-            color: #2980b9;
-        }
-        .bot {
-            text-align: left;
-            color: #27ae60;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENTRI AI - Deteksi Penipuan & Judi Online</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h2>SENTRI - Chatbot Deteksi Judi & Penipuan</h2>
-        <div id="chatbox"></div>
-        <input type="text" id="userInput" placeholder="Ketik pesan...">
+    <header>
+        <h1>SENTRI AI</h1>
+        <p>Solusi Cerdas Deteksi Penipuan & Judi Online</p>
+    </header>
+
+    <div class="chatbox">
+        <div class="messages" id="messages">
+            <div class="message bot">🛑 Awas, aktivitas judi online bisa merugikan. Yuk mulai investasi yang bermanfaat seperti reksa dana atau emas!</div>
+            <div class="message bot">⚠️ Waspada! Ini terindikasi penipuan. Jangan klik link atau transfer uang sebelum memastikan kebenarannya.</div>
+        </div>
+        <input type="text" id="userInput" placeholder="Ketik pesan..." />
+        <button onclick="sendMessage()">Kirim</button>
     </div>
 
     <script>
-        const chatbox = document.getElementById('chatbox');
-        const userInput = document.getElementById('userInput');
+        function sendMessage() {
+            const input = document.getElementById("userInput");
+            const messages = document.getElementById("messages");
+            const text = input.value.trim().toLowerCase();
+            if (!text) return;
 
-        const keywords = [
-            "slot", "togel", "judi", "penipuan", "undian", "transfer mencurigakan", "scam", "phishing"
-        ];
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.textContent = text;
+            messages.appendChild(userMessage);
 
-        const warningMessage = "⚠️ Awas jebakan judi atau penipuan online! Lebih baik investasi aman seperti reksa dana, emas digital, atau tabungan resmi.";
-
-        function addMessage(text, sender) {
-            const msg = document.createElement('div');
-            msg.className = `message ${sender}`;
-            msg.textContent = text;
-            chatbox.appendChild(msg);
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
-
-        userInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && userInput.value.trim() !== '') {
-                const userText = userInput.value.trim();
-                addMessage(userText, 'user');
-
-                const detected = keywords.some(word => userText.toLowerCase().includes(word));
-                if (detected) {
-                    addMessage(warningMessage, 'bot');
-                } else {
-                    addMessage("🤖 SENTRI: Terima kasih! Ada yang bisa saya bantu soal keuangan atau keamanan digital?", 'bot');
-                }
-
-                userInput.value = '';
+            const botMessage = document.createElement("div");
+            botMessage.className = "message bot";
+            
+            if (text.includes("slot") || text.includes("togel")) {
+                botMessage.textContent = "🛑 Awas, aktivitas judi online bisa merugikan. Yuk mulai investasi yang bermanfaat seperti reksa dana atau emas!";
+            } else if (text.includes("penipuan") || text.includes("transfer")) {
+                botMessage.textContent = "⚠️ Waspada! Ini terindikasi penipuan. Jangan klik link atau transfer uang sebelum memastikan kebenarannya.";
+            } else {
+                botMessage.textContent = "🤖 Terima kasih. Pesan Anda telah diterima.";
             }
-        });
+
+            messages.appendChild(botMessage);
+            input.value = "";
+            messages.scrollTop = messages.scrollHeight;
+        }
     </script>
 </body>
 </html>

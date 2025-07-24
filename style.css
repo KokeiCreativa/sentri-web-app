@@ -1,31 +1,66 @@
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
 }
+
+header {
+    background-color: #2d3e50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 .chatbox {
     max-width: 500px;
     margin: 40px auto;
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-#chatlog {
-    height: 300px;
+
+.messages {
+    max-height: 300px;
     overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    background: #fafafa;
+    margin-bottom: 15px;
 }
-.bot, .user {
-    margin-bottom: 10px;
+
+.message {
+    padding: 10px 15px;
+    margin: 8px 0;
+    border-radius: 8px;
+    line-height: 1.4;
 }
-.bot { color: green; }
-.user { color: blue; }
-input, button {
+
+.message.user {
+    background-color: #e0f7fa;
+    text-align: right;
+}
+
+.message.bot {
+    background-color: #f1f1f1;
+}
+
+input[type="text"] {
+    width: calc(100% - 80px);
     padding: 10px;
-    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
