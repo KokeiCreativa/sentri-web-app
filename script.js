@@ -1,48 +1,72 @@
-document.getElementById("chat-form").addEventListener("submit", function(event) {
-  event.preventDefault();
+// ============ RESPONS PERTANYAAN DASAR ============ //
+function getBotResponse(input) {
+    input = input.toLowerCase();
 
-  const inputField = document.getElementById("chat-input");
-  const userInput = inputField.value.trim().toLowerCase();
-  const chatLog = document.getElementById("chat-log");
+    // Jawaban spesifik
+    if (input.includes("halo") || input.includes("hai") || input.includes("hello")) {
+        return "Halo! Ada yang bisa saya bantu terkait keuangan digital?";
+    } else if (input.includes("apa itu sentri")) {
+        return "SENTRI adalah asisten digital untuk membantu masyarakat memahami dan menjaga keamanan keuangan digital.";
+    } else if (input.includes("terima kasih") || input.includes("makasih")) {
+        return "Sama-sama! Jangan ragu untuk bertanya lagi ya.";
+    }
 
-  // List kata sensitif (kamu bisa tambah sendiri)
-  const kataSensitif = ["uang online", "slot", "togel", "judi", "deposit", "chip", "pinjol", "scam", "penipuan", "transfer"];
-
-  const userMessage = document.createElement("div");
-  userMessage.className = "message user";
-  userMessage.innerHTML = "🧑 Kamu: " + userInput + laporButton(userInput);
-  chatLog.appendChild(userMessage);
-
-  inputField.value = "";
-
-  const botMessage = document.createElement("div");
-  botMessage.className = "message bot";
-
-  const adaKataSensitif = kataSensitif.some(kata => userInput.includes(kata));
-
-  if (adaKataSensitif) {
-    botMessage.innerHTML = `
-      ⚠️ <b>Peringatan:</b> Kami mendeteksi kata kunci yang berpotensi terkait aktivitas berisiko atau penipuan.<br>
-      Harap waspada dan jangan berbagi informasi pribadi.
-      <br><br>
-      <a href="${whatsappLink(userInput)}" target="_blank">📤 Laporkan via WhatsApp</a>
-    `;
-  } else {
-    botMessage.textContent = "🤖 SENTRI: Terima kasih! Kami sedang memproses informasi kamu.";
-  }
-
-  chatLog.appendChild(botMessage);
-  chatLog.scrollTop = chatLog.scrollHeight;
-});
-
-// Fungsi tombol "Laporkan"
-function laporButton(text) {
-  const link = whatsappLink(text);
-  return ` <a href="${link}" target="_blank" style="font-size: 0.9em;">📤 Laporkan</a>`;
+    // Default fallback
+    return "Maaf, saya belum memahami pertanyaan itu. Bisa coba ketik dengan kata yang berbeda?";
 }
 
-// Format link WhatsApp
-function whatsappLink(text) {
-  const pesan = encodeURIComponent("Saya ingin melaporkan pesan berikut:\n\n" + text);
-  return "https://wa.me/6281344121216?text=" + pesan; // Ganti nomor WA ke yang resmi nanti
+// ============ FITUR DETEKSI KATA-KATA BERBAHAYA ============ //
+const kataSensitif = [
+    "uang online", "slot", "togel", "judi", "penipuan", "pinjaman bodong", 
+    "kredit online ilegal", "scam", "phising", "investasi bodong"
+];
+
+function deteksiKataSensitif(input) {
+    for (let kata of kataSensitif) {
+        if (input.toLowerCase().includes(kata)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function tanggapanDeteksiKata() {
+    return `
+⚠️ Peringatan: Kami mendeteksi kata kunci yang berpotensi terkait aktivitas berisiko seperti judi, penipuan, atau investasi ilegal.
+
+📢 Waspadalah terhadap tawaran uang cepat atau penghasilan instan.
+
+📞 Jika Anda merasa terjebak atau butuh bantuan, Anda bisa melaporkan:
+➡️ WhatsApp OJK di: https://wa.me/628115715715
+➡️ Telepon 157 (OJK) atau 1500-655 (BI)
+    `;
+}
+
+// ============ FUNGSI UTAMA UNTUK MENGOLAH INPUT ============ //
+function getFinalBotResponse(input) {
+    if (deteksiKataSensitif(input)) {
+        return tanggapanDeteksiKata();
+    } else {
+        return getBotResponse(input);
+    }
+}
+
+// ============ INTERAKSI DENGAN UI ============ //
+function sendMessage() {
+    let userInput = document.getElementById("user-input").value;
+    if (userInput.trim() === "") return;
+
+    // Tampilkan pesan pengguna
+    let chatContainer = document.getElementById("chat-container");
+    chatContainer.innerHTML += `<div class="chat user">${userInput}</div>`;
+
+    // Dapatkan respon dari bot
+    let botResponse = getFinalBotResponse(userInput);
+    chatContainer.innerHTML += `<div class="chat bot">${botResponse.replace(/\n/g, "<br>")}</div>`;
+
+    // Scroll ke bawah
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    // Kosongkan input
+    document.getElementById("user-input").value = "";
 }
