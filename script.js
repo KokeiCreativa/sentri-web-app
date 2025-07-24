@@ -1,15 +1,32 @@
-function kirim() {
-  const input = document.getElementById("userInput").value.toLowerCase();
-  const responseBox = document.getElementById("response");
+document.getElementById("chat-form").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-  const kataTerlarang = ["slot", "togel", "penipuan", "uang cepat", "uang online", "judi", "scam", "cuan instan"];
-  const terdeteksi = kataTerlarang.find(kata => input.includes(kata));
+  const inputField = document.getElementById("chat-input");
+  const userInput = inputField.value.trim().toLowerCase();
+  const chatLog = document.getElementById("chat-log");
 
-  if (!input.trim()) {
-    responseBox.innerHTML = "Silakan isi pesan terlebih dahulu.";
-  } else if (terdeteksi) {
-    responseBox.innerHTML = `⚠️ Peringatan: Terdeteksi kata mencurigakan (“${terdeteksi}”). Harap berhati-hati dan hindari penipuan atau praktik ilegal.`;
+  // Tambah list kata sensitif
+  const kataSensitif = ["uang online", "slot", "togel", "judi", "deposit", "chip", "pinjol", "scam", "penipuan", "transfer"];
+
+  const userMessage = document.createElement("div");
+  userMessage.className = "message user";
+  userMessage.textContent = "🧑 Kamu: " + userInput;
+  chatLog.appendChild(userMessage);
+
+  inputField.value = "";
+
+  const botMessage = document.createElement("div");
+  botMessage.className = "message bot";
+
+  // Deteksi kata sensitif
+  const adaKataSensitif = kataSensitif.some(kata => userInput.includes(kata));
+  
+  if (adaKataSensitif) {
+    botMessage.innerHTML = "⚠️ <b>Peringatan:</b> Kami mendeteksi kata kunci yang berpotensi terkait aktivitas berisiko atau penipuan. Harap waspada dan jangan berbagi informasi pribadi.";
   } else {
-    responseBox.innerHTML = `✅ Terima kasih atas pertanyaannya. Data sedang diproses...`;
+    botMessage.textContent = "🤖 SENTRI: Terima kasih! Kami sedang memproses informasi kamu.";
   }
-}
+
+  chatLog.appendChild(botMessage);
+  chatLog.scrollTop = chatLog.scrollHeight;
+});
