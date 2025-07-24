@@ -1,35 +1,73 @@
-const chatArea = document.getElementById("chat-area");
+const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-button");
 
+// Kata kunci dan respons otomatis
+const keywordResponses = {
+    "pinjam": "🚫 Hati-hati terhadap pinjaman online ilegal. Pastikan penyedia terdaftar di OJK.",
+    "pinjaman": "🚫 Hati-hati terhadap pinjaman online ilegal. Pastikan penyedia terdaftar di OJK.",
+    "investasi": "💡 Waspada terhadap investasi bodong. Periksa legalitasnya di situs OJK.",
+    "cepat": "⚠️ Hati-hati dengan tawaran uang cepat, bisa jadi modus penipuan.",
+    "hadiah": "🎁 Hati-hati terhadap penipuan berkedok hadiah atau giveaway.",
+    "online": "🔒 Jaga data pribadi saat menggunakan layanan keuangan online.",
+    "uang": "💰 Kelola uang Anda dengan bijak dan hindari penawaran mencurigakan.",
+    "judi": "🚫 Judi online adalah ilegal dan dapat merugikan secara finansial dan hukum.",
+    "togel": "🚫 Togel adalah bentuk perjudian yang dilarang. Hindari agar tidak rugi.",
+    "slot": "🚫 Permainan slot online seringkali menjebak dan merugikan.",
+    "scam": "⚠️ Waspada terhadap scam, jangan mudah percaya dengan iming-iming uang.",
+    "menang": "🎯 Penawaran menang tanpa ikut kompetisi bisa jadi penipuan.",
+    "transfer": "🏦 Jangan asal transfer uang tanpa verifikasi yang jelas.",
+    "ojk": "📌 Semua layanan keuangan resmi wajib terdaftar di OJK. Cek di www.ojk.go.id.",
+    "penipuan": "🚨 Waspada terhadap segala bentuk penipuan. Verifikasi selalu informasi yang diterima.",
+    "aman": "🔐 Pastikan semua transaksi dilakukan di platform yang aman dan terpercaya."
+};
+
+// Tampilkan pesan awal dari chatbot
+function showInitialMessage() {
+    const message = `
+        <strong>SENTRI:</strong> 💡 Waspada terhadap penipuan berkedok hadiah.
+    `;
+    chatBox.innerHTML += `<p>${message}</p>`;
+}
+
+function addMessage(sender, text) {
+    const message = `<strong>${sender}:</strong> ${text}`;
+    chatBox.innerHTML += `<p>${message}</p>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    let foundResponse = null;
+
+    // Cek apakah salah satu kata kunci muncul dalam kalimat
+    Object.keys(keywordResponses).forEach(keyword => {
+        if (lowerMessage.includes(keyword)) {
+            foundResponse = keywordResponses[keyword];
+        }
+    });
+
+    return foundResponse || "Maaf, saya belum memahami maksud Anda. Coba dengan kata lain.";
+}
+
 sendButton.addEventListener("click", () => {
-  const userText = userInput.value.trim();
-  if (userText !== "") {
-    appendMessage("Anda", userText);
-    generateResponse(userText);
+    const message = userInput.value.trim();
+    if (message === "") return;
+
+    addMessage("Anda", message);
+
+    const botResponse = getBotResponse(message);
+    setTimeout(() => {
+        addMessage("SENTRI", botResponse);
+    }, 500);
+
     userInput.value = "";
-  }
 });
 
-function appendMessage(sender, message) {
-  const messageElement = document.createElement("div");
-  messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-  chatArea.appendChild(messageElement);
-  chatArea.scrollTop = chatArea.scrollHeight;
-}
+userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        sendButton.click();
+    }
+});
 
-function generateResponse(userText) {
-  const lowerText = userText.toLowerCase();
-
-  if (lowerText.includes("slot") || lowerText.includes("togel")) {
-    appendMessage("SENTRI", "🚨 Perhatian: Hindari aktivitas judi online. Ini bisa membahayakan kondisi finansial Anda.");
-  } else if (lowerText.includes("pinjam uang") || lowerText.includes("pinjol")) {
-    appendMessage("SENTRI", "💡 Hati-hati dengan pinjaman online ilegal! Cek legalitasnya di: https://cekfintech.id");
-  } else if (lowerText.includes("investasi") && lowerText.includes("cepat")) {
-    appendMessage("SENTRI", "📛 Waspada penipuan! Tidak ada investasi yang cepat dan pasti untung. Pastikan legalitasnya di OJK.");
-  } else if (lowerText.includes("hadiah") && lowerText.includes("link")) {
-    appendMessage("SENTRI", "⚠️ Jangan sembarangan klik link hadiah! Banyak penipuan berkedok undian.");
-  } else {
-    appendMessage("SENTRI", "💡 Periksa kembali link sebelum klik. Pastikan sumber terpercaya ya!");
-  }
-}
+window.onload = showInitialMessage;
