@@ -1,21 +1,19 @@
-function sendMessage() {
-    const input = document.getElementById("user-input");
-    const message = input.value.trim();
-    if (!message) return;
-    
-    const chatBox = document.getElementById("chat-box");
-    const userMsg = document.createElement("div");
-    userMsg.textContent = "Kamu: " + message;
-    chatBox.appendChild(userMsg);
+function cekPenipuan() {
+  const input = document.getElementById("userInput").value.toLowerCase();
+  const hasil = document.getElementById("hasilDeteksi");
 
-    const botMsg = document.createElement("div");
-    if (/(slot|togel|penipuan|judi)/i.test(message)) {
-        botMsg.textContent = "⚠️ Peringatan: Aktivitas yang Anda sebutkan termasuk tindakan mencurigakan. Harap berhati-hati.";
-    } else {
-        botMsg.textContent = "SENTRI: Terima kasih! Pertanyaan Anda sedang diproses...";
-    }
-    chatBox.appendChild(botMsg);
+  const kataKunciBerbahaya = [
+    "slot", "togel", "pinjaman ilegal", "deposit", "cuan cepat", "transfer dulu", "investasi bodong",
+    "wd", "jp", "parlay", "kasino", "chip gratis", "gacor", "spin", "auto menang", "reseller palsu"
+  ];
 
-    input.value = "";
-    chatBox.scrollTop = chatBox.scrollHeight;
+  const terdeteksi = kataKunciBerbahaya.filter(kata => input.includes(kata));
+
+  if (terdeteksi.length > 0) {
+    hasil.innerHTML = `⚠️ Kata mencurigakan terdeteksi: <strong>${terdeteksi.join(", ")}</strong>. Harap berhati-hati!`;
+    hasil.style.color = "red";
+  } else {
+    hasil.innerHTML = "✅ Tidak ditemukan indikasi penipuan atau kata mencurigakan.";
+    hasil.style.color = "green";
+  }
 }
