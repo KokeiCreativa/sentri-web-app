@@ -3,7 +3,7 @@ function cekPenipuan() {
   const hasil = document.getElementById("hasilDeteksi");
 
   const kataKunciBerbahaya = [
-    "slot", "togel", "pinjaman ilegal", "deposit", , "judol", "cuan cepat", "transfer dulu", "investasi bodong",
+    "slot", "togel", "pinjaman ilegal", "deposit", "cuan cepat", "transfer dulu", "investasi bodong",
     "wd", "jp", "parlay", "kasino", "chip gratis", "gacor", "spin", "auto menang", "reseller palsu"
   ];
 
