@@ -1,40 +1,29 @@
 
-// chatbot.js — dengan fitur deteksi kata kunci mencurigakan
+function sendMessage() {
+    const userInput = document.getElementById("userInput");
+    const chatContainer = document.getElementById("chatContainer");
+    const userText = userInput.value.trim();
 
-function detectKeywords(input) {
-  const riskyWords = [
-    "slot", "togel", "jackpot", "deposit", "chip", "judi", "pulsa gratis",
-    "menang pulsa", "pinjaman online", "pinjol", "scam", "undian", "hoki"
-  ];
+    if (!userText) return;
 
-  const lowerInput = input.toLowerCase();
-  return riskyWords.some(word => lowerInput.includes(word));
+    const userDiv = document.createElement("div");
+    userDiv.textContent = "🧑‍💼 Anda: " + userText;
+    chatContainer.appendChild(userDiv);
+
+    const botDiv = document.createElement("div");
+    const response = getBotResponse(userText);
+    botDiv.textContent = "🤖 SENTRI: " + response;
+    chatContainer.appendChild(botDiv);
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    userInput.value = "";
 }
 
-function generateResponse(input) {
-  if (detectKeywords(input)) {
-    return "⚠️ Aktivitas ini terindikasi judi/penipuan. Hindari hal seperti ini ya. Lebih baik gunakan uangmu untuk investasi aman seperti reksa dana atau emas digital.";
-  }
-
-  // Contoh respons default
-  return "Terima kasih. Ada yang bisa saya bantu soal keuangan digital?";
+function getBotResponse(input) {
+    input = input.toLowerCase();
+    if (input.includes("pinjaman")) return "Hati-hati dengan tawaran pinjaman online ilegal. Pastikan terdaftar di OJK.";
+    if (input.includes("investasi")) return "Cek legalitas investasi di website resmi OJK atau SWI.";
+    if (input.includes("togel") || input.includes("slot")) return "Aktivitas seperti togel dan slot termasuk ilegal. Hindari untuk keselamatan finansial Anda.";
+    if (input.includes("halo") || input.includes("hai")) return "Halo! Ada yang bisa saya bantu tentang keuangan?";
+    return "Maaf, saya belum mengerti maksud Anda. Silakan coba pertanyaan lain.";
 }
-
-// Event listener tombol kirim (asumsi HTML ada input dengan id='user-input' dan div dengan id='chat')
-document.getElementById("send-btn").addEventListener("click", function () {
-  const userInput = document.getElementById("user-input").value.trim();
-  if (userInput === "") return;
-
-  const chatBox = document.getElementById("chat");
-  const userMsg = document.createElement("div");
-  userMsg.className = "user-message";
-  userMsg.textContent = userInput;
-  chatBox.appendChild(userMsg);
-
-  const botMsg = document.createElement("div");
-  botMsg.className = "bot-message";
-  botMsg.textContent = generateResponse(userInput);
-  chatBox.appendChild(botMsg);
-
-  document.getElementById("user-input").value = "";
-});
