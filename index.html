@@ -16,38 +16,5 @@
     <div class="card" onclick="window.open('https://wa.me/6281234567890')">📲 WhatsApp</div>
     <div class="card" onclick="window.open('https://t.me/username_bot')">💬 Telegram</div>
   </section>
-
-<!-- Chatbot Section -->
-<div id="chatbot-container">
-  <div id="chatbox">
-    <div id="chatlog"></div>
-    <input type="text" id="userInput" placeholder="Ketik pesan..." />
-    <button onclick="sendMessage()">Kirim</button>
-  </div>
-</div>
-
 </body>
-<script>
-function sendMessage() {
-  const input = document.getElementById("userInput");
-  const chatlog = document.getElementById("chatlog");
-  const userText = input.value;
-  if (userText.trim() === "") return;
-  const userDiv = document.createElement("div");
-  userDiv.textContent = "Anda: " + userText;
-  chatlog.appendChild(userDiv);
-  const botDiv = document.createElement("div");
-  botDiv.textContent = "SENTRI: " + generateBotReply(userText);
-  chatlog.appendChild(botDiv);
-  input.value = "";
-  chatlog.scrollTop = chatlog.scrollHeight;
-}
-function generateBotReply(message) {
-  const msg = message.toLowerCase();
-  if (msg.includes("halo")) return "Halo juga! Ada yang bisa saya bantu?";
-  if (msg.includes("investasi")) return "Pastikan Anda memilih investasi yang legal dan diawasi OJK.";
-  if (msg.includes("penipuan")) return "Jika Anda curiga terhadap penipuan, jangan lanjutkan transaksi dan laporkan.";
-  return "Maaf, saya belum paham. Coba ketik dengan kata lain.";
-}
-</script>
 </html>
