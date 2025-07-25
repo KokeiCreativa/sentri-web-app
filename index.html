@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SENTRI - Solusi Digital Cerdas</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>SENTRI</h1>
+        <p>Solusi Edukasi dan Notifikasi Teknologi Real-time Interaktif</p>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>Selamat Datang di SENTRI</h2>
+            <p>Aplikasi web cerdas untuk mendeteksi aktivitas mencurigakan dan memberi edukasi keuangan secara
+                interaktif.</p>
+            <button onclick="mulaiKonsultasi()">Mulai Konsultasi</button>
+        </section>
+        <section class="chatbox" id="chatbox">
+            <div id="chatlog"></div>
+            <input type="text" id="userInput" placeholder="Tulis pertanyaan Anda..."
+                onkeypress="handleKeyPress(event)" />
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 SENTRI. All rights reserved.</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
