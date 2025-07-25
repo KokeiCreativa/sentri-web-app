@@ -1,105 +1,117 @@
-/* Font dan Reset */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-* {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f9f9f9;
   color: #333;
-  line-height: 1.6;
-  padding: 2rem;
 }
 
-/* Header */
 header {
+  background-color: #002147;
+  color: white;
+  padding: 40px 20px;
   text-align: center;
-  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 header h1 {
-  font-size: 2.5rem;
-  color: #222;
+  margin: 0;
+  font-size: 3em;
+  letter-spacing: 2px;
 }
 
 header p {
-  font-size: 1.1rem;
-  color: #555;
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: 300;
 }
 
-/* Section */
-section {
-  margin-bottom: 2rem;
+main {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 
-/* Judul Subsection */
 h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  color: #222;
-  border-left: 5px solid #007bff;
-  padding-left: 0.5rem;
+  color: #002147;
+  border-left: 6px solid #2e8bff;
+  padding-left: 10px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.8em;
 }
 
-/* Paragraf Umum */
-p {
-  margin-bottom: 1rem;
+section p {
+  line-height: 1.7;
+  font-size: 1.1em;
+  margin-bottom: 25px;
 }
 
-/* Fitur Unggulan */
-ul.fitur {
+ul {
   list-style: none;
   padding-left: 0;
 }
 
-ul.fitur li {
-  margin-bottom: 0.8rem;
-  font-size: 1.05rem;
-  display: flex;
-  align-items: center;
+ul li {
+  margin-bottom: 15px;
+  font-size: 1.05em;
 }
 
-ul.fitur li::before {
-  content: "✔️";
-  margin-right: 0.5rem;
-  color: #007bff;
+ul li::before {
+  content: "🔹";
+  margin-right: 8px;
+  color: #2e8bff;
 }
 
-/* Tombol Link WA & Telegram */
-.cta-links a {
-  display: inline-block;
-  margin-right: 1rem;
-  padding: 0.6rem 1.2rem;
-  background-color: #007bff;
-  color: white;
+a {
+  color: #0048ff;
   text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.button-group a {
+  display: inline-block;
+  margin-right: 15px;
+  padding: 10px 20px;
+  background-color: #0048ff;
+  color: white;
   border-radius: 6px;
-  font-weight: 600;
-  transition: background-color 0.3s;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.cta-links a:hover {
-  background-color: #0056b3;
+.button-group a:hover {
+  background-color: #0033cc;
 }
 
-/* Chatbot */
 .chatbot-container {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  border: 2px solid #ccc;
-  border-radius: 12px;
+  margin-top: 30px;
+  padding: 15px;
   background-color: white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Footer opsional */
-footer {
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  color: #777;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  header h1 {
+    font-size: 2em;
+  }
+
+  header p {
+    font-size: 1em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .button-group a {
+    display: block;
+    margin-bottom: 10px;
+  }
 }
