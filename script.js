@@ -1,2 +1,1 @@
-// Final version script.js
-console.log('SENTRI loaded');
+console.log('SENTRI aktif');
