@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+}
+header {
+    background-color: #1e293b;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background-color: #e2e8f0;
+}
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+.card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px;
+}
+.contact {
+    padding: 2rem;
+    background: #fefcbf;
+}
+input, textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+button {
+    padding: 0.5rem 1rem;
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+footer {
+    text-align: center;
+    background: #1e293b;
+    color: white;
+    padding: 1rem;
+}
