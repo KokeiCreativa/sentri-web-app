@@ -1,36 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SENTRI - Asisten Digital Keuangan</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SENTRI - Asisten Digital Keuangan</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>👋 Selamat Datang</h1>
-        <p>SENTRI adalah asisten cerdas yang membantu masyarakat mengenali risiko penipuan dan memahami dunia keuangan digital dengan aman.</p>
-    </header>
-
-    <section class="features">
-        <h2>✨ Fitur Unggulan</h2>
-        <div class="feature-grid">
-            <button onclick="alert('Fitur Edukasi Keuangan dibuka')">📘 Edukasi Keuangan Interaktif</button>
-            <button onclick="alert('Deteksi Kata Kunci dibuka')">🔍 Deteksi Otomatis Kata Kunci Penipuan</button>
-            <button onclick="alert('Integrasi WhatsApp & Telegram dibuka')">💬 Integrasi WhatsApp & Telegram</button>
-            <button onclick="alert('Notifikasi Risiko dibuka')">📢 Notifikasi Waspada Risiko</button>
-        </div>
-    </section>
-
-    <section class="cta">
-        <h2>🚀 Mulai Sekarang</h2>
-        <div class="cta-buttons">
-            <a href="https://wa.me/6281234567890" target="_blank" class="wa-button">Hubungi via WhatsApp</a>
-            <a href="https://t.me/sentri_bot" target="_blank" class="tg-button">Gunakan di Telegram</a>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
+  <header><h1>SENTRI</h1><p>Asisten Cerdas Keuangan Digital</p></header>
+  <section class="fitur">
+    <h2>Fitur Unggulan</h2>
+    <div class="card" onclick="location.href='edukasi.html'">📘 Edukasi Keuangan Interaktif</div>
+    <div class="card" onclick="location.href='deteksi.html'">🔍 Deteksi Kata Kunci Penipuan</div>
+    <div class="card" onclick="location.href='notifikasi.html'">📢 Notifikasi Waspada Risiko</div>
+    <div class="card" onclick="window.open('https://wa.me/6281234567890')">📲 WhatsApp</div>
+    <div class="card" onclick="window.open('https://t.me/username_bot')">💬 Telegram</div>
+  </section>
 </body>
 </html>
