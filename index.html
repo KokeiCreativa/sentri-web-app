@@ -1,16 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENTRI</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>SENTRI - Asisten Digital Keuangan</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Selamat datang di SENTRI</h1>
-  <p>Solusi AI untuk membantu masyarakat mengenali penipuan dan judi online.</p>
-  <button onclick="sapaPengguna()">Klik Saya</button>
-  <script src="assets/script.js"></script>
+  <header><h1>SENTRI</h1><p>Asisten Cerdas Keuangan Digital</p></header>
+  <section class="fitur">
+    <h2>Fitur Unggulan</h2>
+    <div class="card" onclick="location.href='edukasi.html'">📘 Edukasi Keuangan Interaktif</div>
+    <div class="card" onclick="location.href='deteksi.html'">🔍 Deteksi Kata Kunci Penipuan</div>
+    <div class="card" onclick="location.href='notifikasi.html'">📢 Notifikasi Waspada Risiko</div>
+    <div class="card" onclick="window.open('https://wa.me/6281234567890')">📲 WhatsApp</div>
+    <div class="card" onclick="window.open('https://t.me/username_bot')">💬 Telegram</div>
+  </section>
+
+<!-- Chatbot Section -->
+<div id="chatbot-container">
+  <div id="chatbox">
+    <div id="chatlog"></div>
+    <input type="text" id="userInput" placeholder="Ketik pesan..." />
+    <button onclick="sendMessage()">Kirim</button>
+  </div>
+</div>
+
 </body>
+<script>
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chatlog = document.getElementById("chatlog");
+  const userText = input.value;
+  if (userText.trim() === "") return;
+  const userDiv = document.createElement("div");
+  userDiv.textContent = "Anda: " + userText;
+  chatlog.appendChild(userDiv);
+  const botDiv = document.createElement("div");
+  botDiv.textContent = "SENTRI: " + generateBotReply(userText);
+  chatlog.appendChild(botDiv);
+  input.value = "";
+  chatlog.scrollTop = chatlog.scrollHeight;
+}
+function generateBotReply(message) {
+  const msg = message.toLowerCase();
+  if (msg.includes("halo")) return "Halo juga! Ada yang bisa saya bantu?";
+  if (msg.includes("investasi")) return "Pastikan Anda memilih investasi yang legal dan diawasi OJK.";
+  if (msg.includes("penipuan")) return "Jika Anda curiga terhadap penipuan, jangan lanjutkan transaksi dan laporkan.";
+  return "Maaf, saya belum paham. Coba ketik dengan kata lain.";
+}
+</script>
 </html>
