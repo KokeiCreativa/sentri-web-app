@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SENTRI - Solusi Deteksi Aktivitas Keuangan Ilegal</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>Selamat datang di SENTRI</h1>
+        <p>Solusi Cerdas untuk Deteksi Aktivitas Keuangan Ilegal dan Edukasi Digital</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Apa itu SENTRI?</h2>
+            <p>Aplikasi cerdas untuk deteksi aktivitas mencurigakan dan edukasi masyarakat tentang keuangan digital.</p>
+        </section>
+
+        <section>
+            <h2>Deteksi Aktivitas</h2>
+            <textarea id="inputText" placeholder="Tulis aktivitas keuangan di sini..."></textarea>
+            <button onclick="deteksi()">Deteksi</button>
+            <div id="peringatan" class="peringatan"></div>
+        </section>
+
+        <section>
+            <h2>Chatbot Edukasi</h2>
+            <div id="chatbox"></div>
+            <input type="text" id="userInput" placeholder="Tulis pertanyaan..." />
+            <button onclick="chat()">Kirim</button>
+        </section>
+
+        <section>
+            <h2>Edukasi Audio</h2>
+            <audio controls>
+                <source src="assets/audio/edukasi1.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung pemutar audio.
+            </audio>
+        </section>
+
+        <section>
+            <h2>Kontak</h2>
+            <form action="mailto:kokeicreativa@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="nama" placeholder="Nama Anda" required />
+                <input type="email" name="email" placeholder="Email Anda" required />
+                <textarea name="pesan" placeholder="Tulis pesan..." required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+            <div class="contact-links">
+                <a href="https://wa.me/6281344121216" target="_blank">Kontak via WhatsApp</a> |
+                <a href="https://t.me/kokeicreativa" target="_blank">Kontak via Telegram</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 SENTRI - Kokei Creativa</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
