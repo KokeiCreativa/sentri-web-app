@@ -2,52 +2,28 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENTRI - Asisten Digital Keuangan</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SENTRI - Sistem Deteksi Risiko Digital</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header><h1>SENTRI</h1><p>Asisten Cerdas Keuangan Digital</p></header>
-  <section class="fitur">
-    <h2>Fitur Unggulan</h2>
-    <div class="card" onclick="location.href='edukasi.html'">📘 Edukasi Keuangan Interaktif</div>
-    <div class="card" onclick="location.href='deteksi.html'">🔍 Deteksi Kata Kunci Penipuan</div>
-    <div class="card" onclick="location.href='notifikasi.html'">📢 Notifikasi Waspada Risiko</div>
-    <div class="card" onclick="window.open('https://wa.me/6281234567890')">📲 WhatsApp</div>
-    <div class="card" onclick="window.open('https://t.me/username_bot')">💬 Telegram</div>
-  </section>
-
-<!-- Chatbot Section -->
-<div id="chatbot-container">
-  <div id="chatbox">
-    <div id="chatlog"></div>
-    <input type="text" id="userInput" placeholder="Ketik pesan..." />
-    <button onclick="sendMessage()">Kirim</button>
-  </div>
-</div>
-
+  <header>
+    <h1>SENTRI</h1>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="edukasi.html">Edukasi</a>
+      <a href="deteksi.html">Deteksi</a>
+      <a href="notifikasi.html">Notifikasi</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Selamat Datang di SENTRI</h2>
+      <p>Sistem berbasis AI untuk membantu masyarakat mengenali risiko digital seperti penipuan dan judi online.</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 SENTRI by Kokei</p>
+  </footer>
 </body>
-<script>
-function sendMessage() {
-  const input = document.getElementById("userInput");
-  const chatlog = document.getElementById("chatlog");
-  const userText = input.value;
-  if (userText.trim() === "") return;
-  const userDiv = document.createElement("div");
-  userDiv.textContent = "Anda: " + userText;
-  chatlog.appendChild(userDiv);
-  const botDiv = document.createElement("div");
-  botDiv.textContent = "SENTRI: " + generateBotReply(userText);
-  chatlog.appendChild(botDiv);
-  input.value = "";
-  chatlog.scrollTop = chatlog.scrollHeight;
-}
-function generateBotReply(message) {
-  const msg = message.toLowerCase();
-  if (msg.includes("halo")) return "Halo juga! Ada yang bisa saya bantu?";
-  if (msg.includes("investasi")) return "Pastikan Anda memilih investasi yang legal dan diawasi OJK.";
-  if (msg.includes("penipuan")) return "Jika Anda curiga terhadap penipuan, jangan lanjutkan transaksi dan laporkan.";
-  return "Maaf, saya belum paham. Coba ketik dengan kata lain.";
-}
-</script>
 </html>
