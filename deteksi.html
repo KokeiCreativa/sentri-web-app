@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Deteksi Risiko - SENTRI</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+<title>SENTRI - Deteksi</title>
+<link rel='stylesheet' href='style.css'>
 </head>
 <body>
-  <header>
-    <h1>SENTRI</h1>
-    <nav>
-      <a href="index.html">Beranda</a>
-      <a href="edukasi.html">Edukasi</a>
-      <a href="deteksi.html">Deteksi</a>
-      <a href="notifikasi.html">Notifikasi</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Deteksi Risiko Digital</h2>
-    <textarea id="inputText" placeholder="Masukkan teks atau pesan..."></textarea>
-    <button onclick="deteksi()">Deteksi</button>
-    <div id="hasilDeteksi"></div>
-  </main>
+<h1>Halaman Deteksi</h1>
+<textarea id='inputText'></textarea>
+<button onclick='deteksi()'>Deteksi</button>
+<p id='hasil'></p>
+<script src='js/chatbot.js'></script>
+<script>
+function deteksi() {
+ const kata = ['slot', 'judi', 'penipuan'];
+ const teks = document.getElementById('inputText').value.toLowerCase();
+ const hasil = kata.some(k => teks.includes(k)) ? 'Konten mencurigakan terdeteksi!' : 'Aman';
+ document.getElementById('hasil').innerText = hasil;
+ new Audio('assets/alert.mp3').play();
+}
+</script>
 </body>
 </html>
