@@ -3,18 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENTRI - Asisten Digital Keuangan</title>
+  <title>SENTRI - Asisten Keuangan Digital</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><h1>SENTRI</h1><p>Asisten Cerdas Keuangan Digital</p></header>
-  <section class="fitur">
+  <header>
+    <h1>SENTRI</h1>
+    <p>Asisten Cerdas Keuangan Digital</p>
+  </header>
+  <main>
     <h2>Fitur Unggulan</h2>
-    <div class="card" onclick="location.href='edukasi.html'">📘 Edukasi Keuangan Interaktif</div>
-    <div class="card" onclick="location.href='deteksi.html'">🔍 Deteksi Kata Kunci Penipuan</div>
-    <div class="card" onclick="location.href='notifikasi.html'">📢 Notifikasi Waspada Risiko</div>
-    <div class="card" onclick="window.open('https://wa.me/6281234567890')">📲 WhatsApp</div>
-    <div class="card" onclick="window.open('https://t.me/username_bot')">💬 Telegram</div>
-  </section>
+    <div class="fitur">
+      <button>📘 Edukasi Keuangan Interaktif</button>
+      <button>🔍 Deteksi Kata Kunci Penipuan</button>
+      <button>📢 Notifikasi Waspada Risiko</button>
+      <button>📱 WhatsApp</button>
+      <button>💬 Telegram</button>
+    </div>
+  </main>
+
+  <!-- Chatbot -->
+  <div id="chatbot-container" style="display:none;">
+    <div id="chatbox">
+      <p><strong>SENTRI:</strong> Hai! Ada yang bisa saya bantu tentang keuangan digital?</p>
+    </div>
+    <input type="text" id="userInput" placeholder="Ketik pertanyaan..." onkeydown="if(event.key==='Enter'){sendMessage();}" />
+  </div>
+
+  <!-- Floating Button -->
+  <div id="chat-toggle" onclick="toggleChatbot()">
+    💬 Chat dengan SENTRI
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

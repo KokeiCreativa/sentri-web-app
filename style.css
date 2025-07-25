@@ -1,34 +1,59 @@
 body {
   font-family: sans-serif;
-  background: #f0f4f8;
-  text-align: center;
   margin: 0;
   padding: 0;
+  background-color: #f0f5f9;
 }
 header {
-  background: #0077b6;
+  background-color: #007bff;
   color: white;
-  padding: 1em;
+  text-align: center;
+  padding: 2rem 1rem;
 }
-h2 {
-  color: #333;
+main {
+  text-align: center;
+  padding: 2rem 1rem;
 }
-.fitur {
-  display: grid;
-  gap: 1rem;
-  padding: 2rem;
-}
-.card {
-  background: white;
-  padding: 1rem;
-  margin: auto;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.fitur button {
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   cursor: pointer;
-  transition: 0.3s;
 }
-.card:hover {
-  background: #caf0f8;
+#chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+#chatbot-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+#chatbox {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+#userInput {
+  width: 100%;
+  padding: 8px;
 }
