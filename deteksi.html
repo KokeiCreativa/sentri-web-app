@@ -1,1 +1,27 @@
-<html><body><h2>Deteksi</h2></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Deteksi Kata Kunci</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function deteksi() {
+      const input = document.getElementById("teks").value.toLowerCase();
+      const kataBerbahaya = ["slot", "togel", "pinjol", "investasi bodong"];
+      let ditemukan = kataBerbahaya.find(kata => input.includes(kata));
+      document.getElementById("hasil").innerText = ditemukan
+        ? "⚠️ Ditemukan kata berisiko: " + ditemukan
+        : "✅ Tidak ditemukan kata berisiko.";
+    }
+  </script>
+</head>
+<body>
+  <header><h1>Deteksi Kata Kunci Penipuan</h1></header>
+  <section class="fitur">
+    <textarea id="teks" rows="4" cols="50" placeholder="Masukkan teks di sini..."></textarea><br/>
+    <button onclick="deteksi()">Deteksi</button>
+    <p id="hasil"></p>
+    <a href="index.html">⬅ Kembali</a>
+  </section>
+</body>
+</html>

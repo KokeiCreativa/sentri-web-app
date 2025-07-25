@@ -1,1 +1,1 @@
-console.log('SENTRI script loaded');
+console.log('SENTRI aktif!');
