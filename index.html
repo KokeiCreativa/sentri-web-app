@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SENTRI - Asisten Keuangan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>SENTRI</h1>
+    <p>Solusi Digital untuk Edukasi dan Deteksi Penipuan Keuangan</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>👋 Selamat Datang</h2>
+      <p>SENTRI membantu mengenali risiko penipuan dan memahami keuangan digital dengan aman.</p>
+    </section>
+
+    <section>
+      <h2>🚀 Fitur Unggulan</h2>
+      <ul>
+        <li>📘 Edukasi Keuangan Interaktif</li>
+        <li>🛑 Deteksi Otomatis Kata Kunci Penipuan</li>
+        <li>💬 Integrasi WhatsApp & Telegram</li>
+        <li>🔔 Notifikasi Waspada Risiko</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧠 Chatbot Keuangan</h2>
+      <div class="chat-container">
+        <div id="chat-output"></div>
+        <input type="text" id="chat-input" placeholder="Tanya SENTRI..." />
+        <button onclick="sendMessage()">Kirim</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔍 Cek Kata Mencurigakan</h2>
+      <textarea id="inputText" placeholder="Ketik pesan atau iklan mencurigakan..."></textarea>
+      <button onclick="deteksi()">Deteksi</button>
+      <p id="peringatan"></p>
+    </section>
+  </main>
+
+  <audio id="alarm" src="alarm.mp3" preload="auto"></audio>
+
+  <footer>
+    <p>&copy; 2025 SENTRI</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
