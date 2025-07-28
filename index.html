@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SENTRI - Chatbot Keuangan</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1><i class="fas fa-robot"></i> SENTRI</h1>
+    <p>Solusi Edukasi dan Deteksi Risiko Keuangan Berbasis AI</p>
+  </header>
+  <main>
+    <section class="menu">
+      <a href="edukasi.html" class="menu-item"><i class="fas fa-book-open"></i> Edukasi Keuangan Interaktif</a>
+      <a href="deteksi.html" class="menu-item"><i class="fas fa-search"></i> Deteksi Kata Kunci Penipuan</a>
+      <a href="notifikasi.html" class="menu-item"><i class="fas fa-bell"></i> Notifikasi Waspada Risiko</a>
+      <a href="https://wa.me/6281344121216" class="menu-item"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://t.me/username" class="menu-item"><i class="fab fa-telegram"></i> Telegram</a>
+    </section>
+  </main>
+
+  <div class="chatbot-toggle" onclick="toggleChatbot()">
+    <i class="fas fa-comments"></i>
+  </div>
+
+  <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-header">Asisten SENTRI</div>
+    <div class="chatbot-body" id="chat-content">
+      <p><strong>SENTRI:</strong> Halo! Ada yang bisa saya bantu?</p>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chat-input" placeholder="Ketik pesan...">
+      <button onclick="sendMessage()">Kirim</button>
+    </div>
+  </div>
+</body>
+
+</html>
